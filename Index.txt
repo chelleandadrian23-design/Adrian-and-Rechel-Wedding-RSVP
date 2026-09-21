@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adrian & Rechel's Wedding RSVP</title>
+  
+  <!-- Typography Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dusty-blue: #6C8EBF;
+      --dusty-blue-dark: #324B6E;
+      --dusty-blue-light: #F0F4F8;
+      --sage-light: #E8EEE8;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --text-dark: #2B3542;
+      --text-muted: #64748B;
+      --border-color: #CBD5E1;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
+    
+    body {
+      background: linear-gradient(rgba(15, 23, 36, 0.5), rgba(15, 23, 36, 0.5)),
+                  url('https://i.ibb.co/gZpXwn03/hello-wanted-your-thoughts-on-our-church-styling-at-parish-v0-5e6p1dteioug1.webp') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 12px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    /* Hero Typography */
+    .header { text-align: center; margin-bottom: 22px; }
+    
+    .header .names {
+      font-family: 'Alex Brush', cursive;
+      font-size: 58px;
+      color: #F8F3E6;
+      margin-bottom: 2px;
+      font-weight: 600;
+      line-height: 1.1;
+      text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.7), 0px 0px 15px rgba(50, 75, 110, 0.8);
+    }
+    
+    .header .sub-date {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--dusty-blue-dark);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .header p { 
+      font-size: 12px; 
+      color: var(--text-muted); 
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* Frosted Glass Countdown */
+    .countdown-box {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: var(--radius);
+      padding: 16px 12px;
+      margin-bottom: 22px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .countdown-title {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--dusty-blue-dark);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .countdown-timer {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .time-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time-value {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--dusty-blue-dark);
+    }
+
+    .time-label {
+      font-size: 9px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .card { 
+      background: var(--dusty-blue-light); 
+      border-radius: var(--radius); 
+      padding: 20px; 
+      margin-bottom: 20px; 
+      border: 1px solid rgba(108, 142, 191, 0.2);
+    }
+    
+    .search-box { position: relative; margin-bottom: 12px; }
+    
+    input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+      margin-top: 6px;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+
+    input:focus { border-color: var(--dusty-blue-dark); }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-height: 150px;
+      overflow-y: auto;
+      z-index: 10;
+      display: none;
+    }
+
+    .dropdown div { padding: 10px 14px; cursor: pointer; font-size: 13.5px; }
+    .dropdown div:hover { background-color: var(--dusty-blue-light); }
+
+    .btn {
+      width: 100%;
+      padding: 13px;
+      background-color: var(--dusty-blue-dark);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(50, 75, 110, 0.25);
+    }
+
+    .btn:hover { background-color: #243854; transform: translateY(-1px); }
+
+    .btn-secondary {
+      background-color: transparent;
+      border: 1px solid var(--dusty-blue-dark);
+      color: var(--dusty-blue-dark);
+      margin-top: 10px;
+      box-shadow: none;
+    }
+
+    .reservation-banner {
+      text-align: center;
+      background: var(--dusty-blue-light);
+      padding: 18px;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .reservation-banner h2 { 
+      font-size: 16px; 
+      color: var(--dusty-blue-dark); 
+      font-family: 'Cinzel', serif; 
+      letter-spacing: 1px;
+    }
+
+    .reservation-banner .seats { 
+      font-family: 'Cinzel', serif;
+      font-size: 34px; 
+      font-weight: 700; 
+      color: var(--dusty-blue-dark); 
+      margin: 6px 0; 
+    }
+
+    .guest-option {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .guest-name { font-weight: 600; margin-bottom: 10px; font-size: 14px; color: var(--text-dark); }
+    .radio-group { display: flex; gap: 10px; }
+    
+    .radio-btn {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 500;
+      background: #fff;
+      transition: all 0.2s;
+    }
+
+    .radio-btn.selected-attending { background-color: var(--sage-light); border-color: #4A7C59; color: #2B4C32; font-weight: 600; }
+    .radio-btn.selected-declining { background-color: #FCE8E6; border-color: #EA4335; color: #C5221F; font-weight: 600; }
+
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+    .badge-attending { background: var(--sage-light); color: #2B4C32; }
+    .badge-declining { background: #FCE8E6; color: #C5221F; }
+
+    .hidden { display: none; }
+    .progress-text { font-size: 11.5px; color: var(--text-muted); float: right; }
+    .form-group { margin-top: 14px; }
+    label { font-size: 12.5px; font-weight: 600; color: var(--text-dark); }
+
+    /* Modal Overlay & Pop-up Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: #fff;
+      padding: 28px 22px;
+      border-radius: 20px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+    }
+
+    .modal-card h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--dusty-blue-dark);
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .modal-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Important Notice Modal Pop-up -->
+<div id="notice-modal" class="modal-overlay">
+  <div class="modal-card">
+    <h3>Important RSVP Notice</h3>
+    <p>Please note that you can <strong>only submit your RSVP once</strong>.<br><br>If you need to make any changes or have concerns regarding your response, kindly contact the groom or bride directly.</p>
+    <button class="btn" onclick="closeModal()">I Understand</button>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Header & Countdown -->
+  <div class="header">
+    <div class="names">Adrian & Rechel</div>
+    <div class="sub-date">November 27, 2026 • Antipolo, Rizal</div>
+    <p>Parish of the Immaculate Heart of Mary</p>
+  </div>
+
+  <div class="countdown-box">
+    <div class="countdown-title">Counting Down To Our Celebration</div>
+    <div class="countdown-timer">
+      <div class="time-unit"><span id="cd-days" class="time-value">00</span><span class="time-label">Days</span></div>
+      <div class="time-unit"><span id="cd-hours" class="time-value">00</span><span class="time-label">Hours</span></div>
+      <div class="time-unit"><span id="cd-mins" class="time-value">00</span><span class="time-label">Mins</span></div>
+      <div class="time-unit"><span id="cd-secs" class="time-value">00</span><span class="time-label">Secs</span></div>
+    </div>
+  </div>
+
+  <!-- Step 1: Search -->
+  <div id="step-search">
+    <div class="card">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Type your full name..." autocomplete="off">
+        <div id="dropdown" class="dropdown"></div>
+      </div>
+      <button class="btn" onclick="findInvitation()">Find My Invitation</button>
+    </div>
+  </div>
+
+  <!-- Step 2: Form -->
+  <div id="step-form" class="hidden">
+    <div class="reservation-banner">
+      <h2 id="party-title"></h2>
+      <p style="font-size: 11.5px; color: var(--text-muted); margin-top: 2px;">We have reserved seats in your honor.</p>
+      <div class="seats" id="seat-count">0</div>
+      <p style="font-size: 10px; color: var(--text-muted); letter-spacing: 1px;">RESERVED SEATS</p>
+    </div>
+
+    <div style="margin-bottom: 12px;">
+      <span style="font-weight: 600; font-size: 13.5px;">Confirm each guest</span>
+      <span id="progress-tracker" class="progress-text">0 answered</span>
+    </div>
+
+    <div id="guest-list"></div>
+
+    <div class="form-group">
+      <label>Mobile Number <span style="color: var(--text-muted); font-weight: normal;">(Optional)</span></label>
+      <input type="tel" id="phone" placeholder="e.g. +63 9171234567">
+    </div>
+
+    <button class="btn" style="margin-top: 20px;" onclick="goToReview()">Review Your RSVP</button>
+  </div>
+
+  <!-- Step 3: Review -->
+  <div id="step-review" class="hidden">
+    <div class="header" style="margin-bottom: 14px;">
+      <div class="names" style="font-size: 42px;">Review RSVP</div>
+      <p id="review-summary-text" style="font-size: 13px; font-weight: 500;"></p>
+    </div>
+
+    <div class="card">
+      <h3 style="font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 1px; margin-bottom: 12px; color: var(--dusty-blue-dark);">Attendance Details</h3>
+      <div id="review-list"></div>
+    </div>
+
+    <button class="btn" id="submit-btn" onclick="submitRSVP()">Submit RSVP</button>
+    <button class="btn btn-secondary" onclick="backToForm()">Edit Answers</button>
+  </div>
+
+  <!-- Step 4: Existing RSVP Summary -->
+  <div id="step-already-submitted" class="hidden">
+    <div class="header" style="margin-bottom: 14px;">
+      <div class="names" style="font-size: 42px;">RSVP Record</div>
+      <p style="font-size: 12.5px;">Here is your recorded response for our wedding.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 1px; margin-bottom: 12px; color: var(--dusty-blue-dark);">Recorded Attendance</h3>
+      <div id="already-submitted-list"></div>
+    </div>
+
+    <button class="btn" onclick="triggerNoticeModal()">Change / Resubmit RSVP</button>
+    <button class="btn btn-secondary" onclick="resetForm()">Search Another Guest</button>
+  </div>
+
+  <!-- Step 5: Confirmation -->
+  <div id="step-confirmed" class="hidden">
+    <div class="header" style="margin-bottom: 14px;">
+      <div class="names" style="font-size: 42px;">RSVP Submitted!</div>
+      <p style="font-size: 12.5px;">Thank you! We look forward to celebrating with you.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 1px; margin-bottom: 12px; color: var(--dusty-blue-dark);">Attendance Summary</h3>
+      <div id="final-list"></div>
+    </div>
+
+    <button class="btn btn-secondary" onclick="resetForm()">Search Another Guest</button>
+  </div>
+</div>
+
+<script>
+  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyMcl86dH2DaOtcOlr9jsUOKxb3jtzFGuuc40U4POB7b_K0KBAU8jcK0ws0iMNNFva8/exec";
+
+  let database = [];
+  let selectedParty = null;
+  let responses = {};
+
+  // Live Countdown (Target: November 27, 2026)
+  const weddingDate = new Date("November 27, 2026 15:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance > 0) {
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("cd-days").textContent = String(days).padStart(2, '0');
+      document.getElementById("cd-hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("cd-mins").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("cd-secs").textContent = String(seconds).padStart(2, '0');
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  function triggerNoticeModal() {
+    document.getElementById('notice-modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('notice-modal').style.display = 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if (SCRIPT_URL !== "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE") {
+      fetch(`${SCRIPT_URL}?action=getGuestList`)
+        .then(res => res.json())
+        .then(data => { database = data; })
+        .catch(err => console.error("Error loading guest data:", err));
+    }
+  });
+
+  const searchInput = document.getElementById('search-input');
+  const dropdown = document.getElementById('dropdown');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    dropdown.innerHTML = '';
+    
+    if (!query) {
+      dropdown.style.display = 'none';
+      return;
+    }
+
+    const matches = database.filter(p => 
+      p.partyTitle.toLowerCase().includes(query) || 
+      p.members.some(m => m.toLowerCase().includes(query))
+    );
+
+    if (matches.length > 0) {
+      dropdown.style.display = 'block';
+      matches.forEach(p => {
+        const item = document.createElement('div');
+        item.textContent = p.partyTitle;
+        item.onclick = () => {
+          searchInput.value = p.partyTitle;
+          selectedParty = p;
+          dropdown.style.display = 'none';
+        };
+        dropdown.appendChild(item);
+      });
+    } else {
+      dropdown.style.display = 'none';
+    }
+  });
+
+  function findInvitation() {
+    if (!selectedParty) {
+      const query = searchInput.value.toLowerCase().trim();
+      selectedParty = database.find(p => 
+        p.partyTitle.toLowerCase().includes(query) || 
+        p.members.some(m => m.toLowerCase().includes(query))
+      );
+    }
+
+    if (!selectedParty) {
+      alert("Name not found in guest list. Please check spelling or type the main invitee name.");
+      return;
+    }
+
+    // Returning guest check
+    if (selectedParty.hasResponded) {
+      renderAlreadySubmitted();
+      showStep('step-already-submitted');
+      return;
+    }
+
+    renderForm();
+    showStep('step-form');
+  }
+
+  function renderAlreadySubmitted() {
+    const listEl = document.getElementById('already-submitted-list');
+    listEl.innerHTML = '';
+
+    selectedParty.members.forEach(member => {
+      const item = document.createElement('div');
+      item.style.cssText = 'display:flex; justify-content:space-between; margin-bottom:8px;';
+      item.innerHTML = `
+        <span style="font-size: 13.5px;">${member}</span>
+        <span class="badge badge-attending">Submitted</span>
+      `;
+      listEl.appendChild(item);
+    });
+  }
+
+  function renderForm() {
+    document.getElementById('party-title').textContent = selectedParty.partyTitle;
+    document.getElementById('seat-count').textContent = selectedParty.reservedSeats;
+
+    const guestListEl = document.getElementById('guest-list');
+    guestListEl.innerHTML = '';
+    responses = {};
+
+    selectedParty.members.forEach((guest) => {
+      const card = document.createElement('div');
+      card.className = 'guest-option';
+      card.innerHTML = `
+        <div class="guest-name">${guest}</div>
+        <div class="radio-group">
+          <div class="radio-btn" id="attend-${guest}" onclick="setAttendance('${guest}', true)">Attending</div>
+          <div class="radio-btn" id="decline-${guest}" onclick="setAttendance('${guest}', false)">Not Attending</div>
+        </div>
+      `;
+      guestListEl.appendChild(card);
+    });
+
+    updateProgress();
+  }
+
+  function setAttendance(guest, isAttending) {
+    responses[guest] = isAttending;
+    document.getElementById(`attend-${guest}`).className = isAttending ? 'radio-btn selected-attending' : 'radio-btn';
+    document.getElementById(`decline-${guest}`).className = !isAttending ? 'radio-btn selected-declining' : 'radio-btn';
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const answeredCount = Object.keys(responses).length;
+    const totalCount = selectedParty.members.length;
+    document.getElementById('progress-tracker').textContent = `${answeredCount} of ${totalCount} answered`;
+  }
+
+  function goToReview() {
+    if (Object.keys(responses).length < selectedParty.members.length) {
+      alert("Please select an RSVP response for every guest.");
+      return;
+    }
+
+    const attendingCount = Object.values(responses).filter(v => v === true).length;
+    document.getElementById('review-summary-text').textContent = `${attendingCount} of ${selectedParty.members.length} attending`;
+
+    const reviewList = document.getElementById('review-list');
+    reviewList.innerHTML = '';
+
+    for (const [guest, isAttending] of Object.entries(responses)) {
+      const item = document.createElement('div');
+      item.style.cssText = 'display:flex; justify-content:space-between; margin-bottom:8px;';
+      item.innerHTML = `
+        <span style="font-size: 13.5px;">${guest}</span>
+        <span class="badge ${isAttending ? 'badge-attending' : 'badge-declining'}">
+          ${isAttending ? 'Attending' : 'Not Attending'}
+        </span>
+      `;
+      reviewList.appendChild(item);
+    }
+
+    showStep('step-review');
+  }
+
+  function backToForm() { showStep('step-form'); }
+
+  function submitRSVP() {
+    const attendingNames = Object.entries(responses)
+      .filter(([_, isAttending]) => isAttending)
+      .map(([name]) => name)
+      .join(', ');
+
+    const decliningNames = Object.entries(responses)
+      .filter(([_, isAttending]) => !isAttending)
+      .map(([name]) => name)
+      .join(', ');
+
+    const attendingCount = Object.values(responses).filter(v => v === true).length;
+    const decliningCount = Object.values(responses).filter(v => v === false).length;
+
+    let overallStatus = "Declined";
+    if (attendingCount === selectedParty.members.length) {
+      overallStatus = "Attending";
+    } else if (attendingCount > 0) {
+      overallStatus = "Partially Attending";
+    }
+
+    const formData = new URLSearchParams();
+    formData.append('row', selectedParty.row);
+    formData.append('attendanceStatus', overallStatus);
+    formData.append('phone', document.getElementById('phone').value || '');
+    formData.append('attendingNames', attendingNames);
+    formData.append('decliningNames', decliningNames);
+    formData.append('attendingCount', attendingCount);
+    formData.append('decliningCount', decliningCount);
+
+    // Instant UI transition
+    document.getElementById('final-list').innerHTML = document.getElementById('review-list').innerHTML;
+    showStep('step-confirmed');
+
+    // Silent background save
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formData.toString()
+    }).catch(err => {
+      console.error("Background sync error:", err);
+    });
+  }
+
+  function resetForm() {
+    selectedParty = null;
+    responses = {};
+    searchInput.value = '';
+    showStep('step-search');
+  }
+
+  function showStep(stepId) {
+    ['step-search', 'step-form', 'step-review', 'step-already-submitted', 'step-confirmed'].forEach(id => {
+      document.getElementById(id).classList.add('hidden');
+    });
+    document.getElementById(stepId).classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
